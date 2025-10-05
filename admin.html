@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartAviation | Painel Administrativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+    <div class="auth-overlay" id="auth-overlay" aria-hidden="true">
+        <div class="auth-card" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+            <img src="assets/logo-smartaviation.png" alt="Logo SmartAviation" class="auth-logo">
+            <h1 id="auth-title">Área Administrativa</h1>
+            <p class="auth-subtitle">Faça login para gerenciar conteúdos, portfólio e solicitações.</p>
+            <form id="admin-login" autocomplete="off">
+                <label for="login-email">E-mail corporativo</label>
+                <input id="login-email" name="email" type="email" required placeholder="admin@smartaviation.com">
+
+                <label for="login-password">Senha</label>
+                <input id="login-password" name="password" type="password" required placeholder="••••••">
+
+                <button class="btn primary" type="submit">Acessar painel</button>
+                <p id="admin-login-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="admin-shell" id="admin-shell" hidden>
+        <aside class="admin-sidebar">
+            <div class="sidebar-brand">
+                <img src="assets/logo-smartaviation.png" alt="Logo SmartAviation" class="sidebar-logo">
+                <div>
+                    <strong>SmartAviation</strong>
+                    <small>Gerenciamento de conteúdo</small>
+                </div>
+            </div>
+            <nav class="sidebar-nav" aria-label="Navegação do painel">
+                <a href="#content-hero">Banner principal</a>
+                <a href="#content-banner">Banner secundário</a>
+                <a href="#content-portfolio">Portfólio</a>
+                <a href="#content-requests">Solicitações</a>
+                <a href="#content-users">Usuários</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout" class="btn ghost">Encerrar sessão</button>
+                <small>Logado como <span id="active-user">admin@smartaviation.com</span></small>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-topbar">
+                <div>
+                    <h1>Painel SmartAviation</h1>
+                    <p>Atualize conteúdos do site em tempo real.</p>
+                </div>
+                <div class="topbar-badges">
+                    <span class="badge">Portfólio ativo <strong id="portfolio-count">0</strong></span>
+                    <span class="badge">Solicitações <strong id="request-count">0</strong></span>
+                </div>
+            </header>
+
+            <section id="content-hero" class="panel-card">
+                <header>
+                    <h2>Banner principal</h2>
+                    <p>Atualize o título e o texto do destaque da página inicial.</p>
+                </header>
+                <form id="hero-form">
+                    <label for="hero-title">Título</label>
+                    <input id="hero-title" name="title" type="text" required>
+
+                    <label for="hero-subtitle">Descrição</label>
+                    <textarea id="hero-subtitle" name="subtitle" rows="3" required></textarea>
+
+                    <div class="form-actions">
+                        <button class="btn primary" type="submit">Salvar alterações</button>
+                        <p class="form-feedback" data-feedback="hero"></p>
+                    </div>
+                </form>
+            </section>
+
+            <section id="content-banner" class="panel-card">
+                <header>
+                    <h2>Banner secundário</h2>
+                    <p>Configure a chamada para ação do bloco de contato.</p>
+                </header>
+                <form id="banner-form">
+                    <label for="banner-title">Chamada</label>
+                    <input id="banner-title" name="title" type="text" required>
+
+                    <label for="banner-description">Descrição</label>
+                    <textarea id="banner-description" name="description" rows="3" required></textarea>
+
+                    <div class="form-actions">
+                        <button class="btn primary" type="submit">Atualizar banner</button>
+                        <p class="form-feedback" data-feedback="banner"></p>
+                    </div>
+                </form>
+            </section>
+
+            <section id="content-portfolio" class="panel-card">
+                <header>
+                    <div>
+                        <h2>Portfólio</h2>
+                        <p>Cadastre novos projetos com imagens e descrição detalhada.</p>
+                    </div>
+                    <button class="btn ghost" type="button" id="toggle-product-form">Novo item</button>
+                </header>
+
+                <form id="product-form" hidden enctype="multipart/form-data">
+                    <div class="form-row">
+                        <label for="product-name">Título do projeto</label>
+                        <input id="product-name" name="name" type="text" required>
+
+                        <label for="product-tag">Categoria / Tag</label>
+                        <input id="product-tag" name="tag" type="text" placeholder="Ferramental, Kit de emergência...">
+                    </div>
+
+                    <label for="product-description">Descrição detalhada</label>
+                    <textarea id="product-description" name="description" rows="4" required></textarea>
+
+                    <label for="product-main-image">Imagem principal (arquivo)</label>\n                    <input id="product-main-image" name="mainImage" type="file" accept="image/*" required>>
+
+                    <div class="form-row gallery-inputs">
+                        <div>
+                            <label for="product-gallery-1">Imagem complementar 1 (arquivo)</label>\n                            <input id="product-gallery-1" name="gallery1" type="file" accept="image/*" required>
+                        </div>
+                        <div>
+                            <label for="product-gallery-2">Imagem complementar 2 (arquivo)</label>\n                            <input id="product-gallery-2" name="gallery2" type="file" accept="image/*" required>
+                        </div>
+                        <div>
+                            <label for="product-gallery-3">Imagem complementar 3 (arquivo)</label>\n                            <input id="product-gallery-3" name="gallery3" type="file" accept="image/*" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn primary" type="submit">Adicionar ao portfólio</button>
+                        <button class="btn ghost" type="button" id="cancel-product">Cancelar</button>
+                        <p class="form-feedback" data-feedback="product"></p>
+                    </div>
+                </form>
+
+                <div id="product-admin-list" class="portfolio-admin-grid" aria-live="polite">
+                    <!-- Cards do portfólio admin -->
+                </div>
+            </section>
+
+            <section id="content-requests" class="panel-card">
+                <header>
+                    <h2>Solicitações de orçamento</h2>
+                    <p>Acompanhe o status das demandas recebidas pelo site.</p>
+                </header>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Empresa</th>
+                                <th>Contato</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requests-table">
+                            <!-- Linhas preenchidas via script -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="content-users" class="panel-card">
+                <header>
+                    <h2>Gestão de usuários</h2>
+                    <p>Crie e remova acessos ao painel administrativo.</p>
+                </header>
+                <form id="user-form">
+                    <div class="form-row">
+                        <label for="user-name">Nome completo</label>
+                        <input id="user-name" name="name" type="text" required>
+
+                        <label for="user-email">E-mail</label>
+                        <input id="user-email" name="email" type="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="user-role">Perfil</label>
+                        <input id="user-role" name="role" type="text" placeholder="Administrador, Comercial..." required>
+
+                        <label for="user-password">Senha provisória</label>
+                        <input id="user-password" name="password" type="password" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn primary" type="submit">Cadastrar usuário</button>
+                        <p class="form-feedback" data-feedback="user"></p>
+                    </div>
+                </form>
+                <ul id="user-list" class="user-list" aria-live="polite">
+                    <!-- Usuários renderizados aqui -->
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="data-store.js" defer></script>
+    <script src="admin.js" defer></script>
+</body>
+</html>
+
+
+

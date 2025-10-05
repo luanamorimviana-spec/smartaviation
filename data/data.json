@@ -1,0 +1,49 @@
+﻿{
+  "hero": {
+    "title": "Integração inteligente para operações críticas",
+    "subtitle": "Projetos sob medida, manutenção especializada e suporte 24/7 para garantir a disponibilidade da sua frota."
+  },
+  "banner": {
+    "title": "Planeje sua próxima missão com inteligência",
+    "description": "Conte com um parceiro certificado para garantir disponibilidade, compliance e performance."
+  },
+  "products": [
+    {
+      "id": "prod-default-1",
+      "name": "Kit Ferramental A320neo",
+      "tag": "Ferramental",
+      "description": "Conjunto completo para manutenção de linha e pesada da família A320neo com certificados atualizados.",
+      "mainImage": "https://images.unsplash.com/photo-1523966211575-eb4a0173b94c?auto=format&fit=crop&w=1380&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1475724017904-b712052c192a?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+      ],
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod-default-2",
+      "name": "Estação de Calibração Inteligente",
+      "tag": "Calibração",
+      "description": "Sistema modular com monitoramento remoto, telemetria e rastreabilidade total para instrumentos críticos.",
+      "mainImage": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1380&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1510137600163-2729bc471400?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1475724017904-b712052c192a?auto=format&fit=crop&w=800&q=80"
+      ],
+      "createdAt": "2024-01-02T00:00:00.000Z"
+    }
+  ],
+  "requests": [],
+  "users": [
+    {
+      "id": "user-admin-1",
+      "name": "Administrador Smart",
+      "email": "admin@smartaviation.com",
+      "role": "Administrador",
+      "password": "smart123",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    }
+  ]
+}
