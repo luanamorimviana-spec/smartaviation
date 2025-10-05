@@ -1,5 +1,25 @@
 ﻿(function (global) {
-    const API_BASE = '/api';
+    const config = global.SMART_API_CONFIG || {};
+
+    const normalizeUrl = (value) => value.replace(/\/$/, '');
+
+    const resolveApiBase = () => {
+        if (config.apiBase) {
+            return normalizeUrl(config.apiBase);
+        }
+        const meta = typeof document !== 'undefined'
+            ? document.querySelector('meta[name="smartaviation-api-base"]')
+            : null;
+        if (meta?.content) {
+            return normalizeUrl(meta.content);
+        }
+        if (global.location?.origin) {
+            return `${normalizeUrl(global.location.origin)}/api`;
+        }
+        return '/api';
+    };
+
+    const API_BASE = resolveApiBase();
     const TOKEN_KEY = 'smartAviationToken';
     const USER_KEY = 'smartAviationUser';
 
@@ -35,7 +55,7 @@
             isForm = false
         } = options;
 
-        const config = {
+        const configRequest = {
             method,
             headers: { ...headers }
         };
@@ -45,19 +65,19 @@
             if (!token) {
                 throw new Error('Sessão não encontrada. Faça login novamente.');
             }
-            config.headers.Authorization = `Bearer ${token}`;
+            configRequest.headers.Authorization = `Bearer ${token}`;
         }
 
         if (body) {
             if (isForm) {
-                config.body = body;
+                configRequest.body = body;
             } else {
-                config.headers['Content-Type'] = 'application/json';
-                config.body = JSON.stringify(body);
+                configRequest.headers['Content-Type'] = 'application/json';
+                configRequest.body = JSON.stringify(body);
             }
         }
 
-        const response = await fetch(`${API_BASE}${endpoint}`, config);
+        const response = await fetch(`${API_BASE}${endpoint}`, configRequest);
         if (!response.ok) {
             const errorText = await response.text().catch(() => '');
             let message = errorText;
